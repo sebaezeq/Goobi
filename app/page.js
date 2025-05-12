@@ -1,103 +1,78 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [busqueda, setBusqueda] = useState('');
+  const [filtro, setFiltro] = useState('Todos');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const productos = [
+    { id: 1, nombre: 'Lavandina Clásica', categoria: 'Lavandina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 650, descripcion: 'Lavandina clásica para uso general.' },
+    { id: 2, nombre: 'Perfumina Floral', categoria: 'Perfumina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 800, descripcion: 'Aroma floral duradero para ambientes.' },
+    { id: 3, nombre: 'Limpiador de Pisos', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 700, descripcion: 'Limpieza profunda y aroma fresco.' },
+    { id: 4, nombre: 'Lavandina con Cloro', categoria: 'Lavandina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 720, descripcion: 'Desinfectante potente para superficies.' },
+    { id: 5, nombre: 'Perfumina Citrus', categoria: 'Perfumina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 810, descripcion: 'Fragancia cítrica para el hogar.' },
+    { id: 6, nombre: 'Desinfectante Multiuso', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 890, descripcion: 'Ideal para baños, cocinas y pisos.' },
+    { id: 7, nombre: 'Jabón Líquido Concentrado', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 950, descripcion: 'Fórmula concentrada, más rendimiento.' },
+    { id: 8, nombre: 'Perfumina Lavanda', categoria: 'Perfumina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 820, descripcion: 'Relajante aroma a lavanda.' },
+    { id: 9, nombre: 'Lavandina Extra Fuerte', categoria: 'Lavandina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 760, descripcion: 'Para desinfección profunda.' },
+    { id: 10, nombre: 'Limpiador Antibacterial', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 870, descripcion: 'Elimina el 99.9% de bacterias.' },
+    { id: 11, nombre: 'Perfumina Vainilla', categoria: 'Perfumina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 850, descripcion: 'Fragancia dulce y reconfortante.' },
+    { id: 12, nombre: 'Limpiavidrios', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 730, descripcion: 'Para vidrios y superficies brillantes.' },
+    { id: 13, nombre: 'Lavandina Limón', categoria: 'Lavandina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 690, descripcion: 'Desinfección con aroma cítrico.' },
+    { id: 14, nombre: 'Desengrasante Cocina', categoria: 'Pisos', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 920, descripcion: 'Ideal para hornos, mesadas y más.' },
+    { id: 15, nombre: 'Perfumina Frutos Rojos', categoria: 'Perfumina', imagen: 'https://ardiaprod.vtexassets.com/arquivos/ids/348619-500-auto?v=638794440997300000&width=500&height=auto&aspect=true', precio: 840, descripcion: 'Aroma intenso y frutal.' }
+  ];
+
+  const filtrarProductos = (productos, filtro, busqueda) => {
+    return productos
+      .filter(producto => (filtro === 'Todos' || producto.categoria === filtro))
+      .filter(producto => producto.nombre.toLowerCase().includes(busqueda.toLowerCase()));
+  };
+
+  const productosFiltrados = filtrarProductos(productos, filtro, busqueda);
+
+  return (
+    <main className="catalogo">
+      <h1>Catálogo de productos</h1>
+
+      <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar producto..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
+
+      <div id="filtros">
+        <button onClick={() => setFiltro('Todos')}>Todos</button>
+        <button onClick={() => setFiltro('Lavandina')}>Lavandina</button>
+        <button onClick={() => setFiltro('Perfumina')}>Perfumina</button>
+        <button onClick={() => setFiltro('Pisos')}>Pisos</button>
+      </div>
+
+      <div id="lista-productos" className="productos">
+        {productosFiltrados.length > 0 ? (
+          productosFiltrados.map(producto => (
+            <div key={producto.id} className="producto">
+              <img src={producto.imagen} alt={producto.nombre} />
+              <h3>{producto.nombre}</h3>
+              <p>{producto.descripcion}</p>
+              <p><strong>${producto.precio}</strong></p>
+              <a
+                href={`https://wa.me/5491168707724?text=Hola!%20Quiero%20consultar%20por%20el%20producto:%20${encodeURIComponent(producto.nombre)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="boton-consultar"
+              >
+                Consultar
+              </a>
+            </div>
+          ))
+        ) : (
+          <p>No se encontraron productos</p>
+        )}
+      </div>
+    </main>
   );
 }
